@@ -1,0 +1,7 @@
+C:\Users\User\source\repos\ConvergenceInvestigation\ConvergenceInvestigation\bin\Debug\ConvergenceInvestigation.exe.config
+C:\Users\User\source\repos\ConvergenceInvestigation\ConvergenceInvestigation\bin\Debug\ConvergenceInvestigation.exe
+C:\Users\User\source\repos\ConvergenceInvestigation\ConvergenceInvestigation\bin\Debug\ConvergenceInvestigation.pdb
+C:\Users\User\source\repos\ConvergenceInvestigation\ConvergenceInvestigation\obj\Debug\ConvergenceInvestigation.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\ConvergenceInvestigation\ConvergenceInvestigation\obj\Debug\ConvergenceInvestigation.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\ConvergenceInvestigation\ConvergenceInvestigation\obj\Debug\ConvergenceInvestigation.exe
+C:\Users\User\source\repos\ConvergenceInvestigation\ConvergenceInvestigation\obj\Debug\ConvergenceInvestigation.pdb
