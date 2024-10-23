@@ -3,44 +3,53 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace ConvergenceInvestigation
 {
     class Program
     {
         static int iteration = 0;
-        static double P = 0;
-        static double F = 0;
-        static double Pout = 101325;
-        static double V = 0.1;
-        static double R = 8.314;
-        static double T = 273;
-        static double m = 0.028;
-        static double omega;
-        static double S = 0.0001;
-        static double gamma = 1.33;
-        static double C;
-
-        static double tau;
         static double dt = 10;
+        static SimulationSystem system;
+        static StreamWriter sw;
         static void Main(string[] args)
         {
-            Console.WriteLine("Initialization");
-            omega = S * Math.Sqrt(gamma / (m * R * T));
-            C = R * T / V;
-            tau = 1 / (C * omega);
-            Console.WriteLine("Omega (mol/(Pa*sec)): " + omega);
-            Console.WriteLine("C (Pa/mol)): " + C);
-            Console.WriteLine("tau (sec)): " + tau);
-            Console.WriteLine("dt (sec)): " +dt);
-            Console.ReadKey();
-            Console.WriteLine("Iteration, P, F, scaling");
-            for (int i = 0; i < 1000; i++)
-                ThirdSelfAjustmentIteration();
-                //NewIteration();
+            sw = new StreamWriter("output.csv");
+            try
+            {
+                system = new SimulationSystem();
+                system.Initialize();
+
+                string line = "Iteration, dt,";
+                line += system.GetFirstExtendedLogString();
+                sw.WriteLine(line);
+
+                while (iteration < 10000)
+                    NewIteration();
+
+                Console.WriteLine("Done!");
+            }
+            catch
+            {
+                sw.Close();
+            }
             Console.ReadKey();
         }
         static void NewIteration()
+        {
+            system.UpdateFlows();
+            system.Iteration(iteration, ref dt);
+            iteration++;
+            FileLog();
+        }
+        static void FileLog()
+        {
+            string line = iteration +"," + dt +",";
+            line += system.GetExtendedLogString();
+            sw.WriteLine(line);
+        }
+        /*static void NewIteration()
         {
             F = omega * (Pout - P);
             double dP_dt = F * C;
@@ -125,6 +134,6 @@ namespace ConvergenceInvestigation
             F = omega * (Pout - P);
             Console.WriteLine(iteration + "," + P + "," + F + ",");
             iteration++;
-        }
+        }*/
     }
 }
