@@ -25,7 +25,7 @@ namespace ConvergenceInvestigation
                 line += system.GetFirstExtendedLogString();
                 sw.WriteLine(line);
 
-                while (iteration < 10000)
+                while (iteration < 100000)
                     NewIteration();
 
                 Console.WriteLine("Done!");
@@ -38,6 +38,8 @@ namespace ConvergenceInvestigation
         }
         static void NewIteration()
         {
+            if (iteration == 4000)
+                ;
             system.UpdateFlows();
             system.Iteration(iteration, ref dt);
             iteration++;
